@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mini Messenger</title>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Roboto:400);
+      * {
+        margin: 5px;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+      body {
+        font: 15px Roboto;
+      }
+      form {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 100px;
+        width: 100%;
+      }
+      input {
+        border: 0.5;
+        border-radius: 4px;
+        padding: 10px;
+        width: 80%;
+        height: 2rem;
+        margin-right: 0.5%;
+      }
+      button {
+        width: 15%;
+        height: 2rem;
+        border-radius: 4px;
+        background: #4293f5;
+      }
+      #messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      #messages li {
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      //this is a global, typically not best practice but useful here
+      const userName = window.prompt('Please enter your username:')
+    </script>
+    <h3>Mini-messenger</h3>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+      <input id="message-input" autocomplete="off" />
+      <button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io()
+      document.getElementById('form').addEventListener('submit', e => {
+        e.preventDefault()
+        const messageInput = document.getElementById('message-input')
+        socket.emit('message', {
+          userName: userName,
+          message: messageInput.value
+        })
+        messageInput.value = ''
+        return false
+      })
+
+      socket.on('message', message => {
+        const newMsg = document.createElement('li')
+        newMsg.innerHTML = `<li>${message.userName}: ${message.message}</li>`
+        document.getElementById('messages').append(newMsg)
+      })
+    </script>
+  </body>
+</html>
