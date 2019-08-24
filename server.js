@@ -5,8 +5,6 @@ const bodyParser = require('koa-body-parser')
 const send = require('koa-send')
 const IO = require('koa-socket-2')
 
-// require('dotenv').config()
-
 let app = new Koa()
 const router = new Router()
 const io = new IO()
