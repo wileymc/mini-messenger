@@ -45,8 +45,8 @@
   </head>
   <body>
     <script>
-      //this is a global, typically not best practice but useful here
-      const userName = window.prompt('Please enter your username:')
+      // This is a global, typically not best practice but useful here
+      const userName = window.prompt('Please enter a username:')
     </script>
     <h3>Mini-messenger</h3>
     <ul id="messages"></ul>
@@ -56,6 +56,7 @@
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script>
+      // Emit a sockets message when the form is submitted and reset the input field
       const socket = io()
       document.getElementById('form').addEventListener('submit', e => {
         e.preventDefault()
@@ -67,7 +68,7 @@
         messageInput.value = ''
         return false
       })
-
+      // Add a recieved message to the DOM with username attached
       socket.on('message', message => {
         const newMsg = document.createElement('li')
         newMsg.innerHTML = `<li>${message.userName}: ${message.message}</li>`
