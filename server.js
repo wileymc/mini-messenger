@@ -1,6 +1,5 @@
 const Koa = require('koa')
 const Router = require('koa-router')
-const cors = require('koa2-cors')
 const bodyParser = require('koa-body-parser')
 const send = require('koa-send')
 const IO = require('koa-socket-2')
@@ -8,8 +7,6 @@ const IO = require('koa-socket-2')
 let app = new Koa()
 const router = new Router()
 const io = new IO()
-
-app.use(cors())
 
 io.attach(app)
 
@@ -20,8 +17,9 @@ io.on(`message`, (ctx, message) => {
 })
 
 // I didn't connect a database, but if we wanted our messages to persist
-// between sessions, this would be necessary.  Something as lightweight
-// as localstorage or Redis would do the trick for such a simple app.
+// between sessions or be available across different clients, this would
+// be necessary.  Something as lightweight as localstorage or Redis would
+// do the trick for such a simple app.
 
 router.get(`/`, async (ctx, next) => {
   try {
@@ -34,13 +32,10 @@ router.get(`/`, async (ctx, next) => {
 
 router.redirect('/:anything', '/')
 
-app
-  .use(router.allowedMethods())
-  .use(router.routes())
-  .use(bodyParser)
+app.use(router.routes()).use(bodyParser)
 
 const port = process.env.PORT || 8000
 app = app.listen(port)
 console.log(`🌌  Server running on port ${port}`)
 
-module.exports = { app, io }
+module.exports = { app }

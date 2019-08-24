@@ -1,7 +1,14 @@
 const request = require('supertest')
-const { app, io } = require('./server.js')
+const { app } = require('./server.js')
 
 const req = request(app)
+
+const getMethods = obj =>
+  Object.getOwnPropertyNames(obj).filter(
+    item => typeof obj[item] === 'function'
+  )
+
+console.log(getMethods(io))
 
 describe('test routes', () => {
   it('renders the app without failing', done => {
