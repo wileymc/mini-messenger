@@ -4,7 +4,8 @@
   "description": "A lightweight messaging client",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "test": "jest --forceExit"
   },
   "repository": "https://github.com/wileybaba/mini-messenger",
   "author": "Wiley McKay Conte",
@@ -22,6 +23,8 @@
     "koa-static": "^5.0.0",
     "koa2-cors": "^2.0.6",
     "nodemon": "^1.19.1",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "supertest": "^4.0.2"
   }
 }

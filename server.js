@@ -5,9 +5,9 @@ const bodyParser = require('koa-body-parser')
 const send = require('koa-send')
 const IO = require('koa-socket-2')
 
-require('dotenv').config()
+// require('dotenv').config()
 
-const app = new Koa()
+let app = new Koa()
 const router = new Router()
 const io = new IO()
 
@@ -42,5 +42,7 @@ app
   .use(bodyParser)
 
 const port = process.env.PORT || 8000
-app.listen(port)
+app = app.listen(port)
 console.log(`🌌  Server running on port ${port}`)
+
+module.exports = { app, io }
