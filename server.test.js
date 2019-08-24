@@ -1,5 +1,5 @@
 const request = require('supertest')
-const { app } = require('./server.js')
+const app = require('./server.js')
 const io = require('socket.io-client')
 
 let sender = io('http://localhost:8000/')
