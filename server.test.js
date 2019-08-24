@@ -1,14 +1,10 @@
 const request = require('supertest')
 const { app } = require('./server.js')
+const io = require('socket.io-client')
 
+let sender = io('http://localhost:8000/')
+let receiver = io('http://localhost:8000/')
 const req = request(app)
-
-const getMethods = obj =>
-  Object.getOwnPropertyNames(obj).filter(
-    item => typeof obj[item] === 'function'
-  )
-
-console.log(getMethods(io))
 
 describe('test routes', () => {
   it('renders the app without failing', done => {
@@ -27,12 +23,12 @@ describe('test routes', () => {
   })
 })
 
-// describe('test web sockets', () => {
-//   it('socket emits message', done => {
-//     req.get('/')
-//     io.on('message', message => {
-//       expect(message).toBeTruthy()
-//       done()
-//     })
-//   })
-// })
+describe('test web sockets emission', () => {
+  it('Should properly emit the message event to the client', done => {
+    sender.emit('message', 'hello')
+    receiver.on('message', message => {
+      expect(message).toBe('hello')
+      done()
+    })
+  })
+})
