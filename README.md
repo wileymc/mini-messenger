@@ -2,7 +2,7 @@
 
 A lightweight messaging client built with Node and Sockets.io
 
-Live demo on [Heroku](mini-messenger-802.herokuapp.com)
+Live demo on [Heroku](http://mini-messenger-802.herokuapp.com)
 
 ## Getting started
 
