@@ -1,6 +1,6 @@
 # mini-messenger
 
-A lightweight messaging client built with Node and Sockets.io
+A lightweight messaging client built with Node and Socket.io
 
 Live demo on [Heroku](http://mini-messenger-802.herokuapp.com)
 
