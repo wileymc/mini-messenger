@@ -17,8 +17,8 @@ io.on(`message`, (ctx, message) => {
 
 // I didn't connect a database, but if we wanted our messages to persist
 // between sessions or be available across different clients, this would
-// be necessary.  Something as lightweight as localstorage or Redis would
-// do the trick for such a simple app.
+// be necessary.  Something as lightweight as Redis would do the trick
+// for such a simple app. Or localstorage for a single client.
 
 router.get(`/`, async (ctx, next) => {
   try {

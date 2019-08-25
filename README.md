@@ -6,9 +6,12 @@ Live demo on [Heroku](mini-messenger-802.herokuapp.com)
 
 ## Getting started
 
-In the console, at the root of the project directory, run:
-`yarn start`
+In the console, run:
+`git clone https://github.com/wileybaba/mini-messenger.git && cd mini-messenger`
 
-Then, navigate to [localhost:8000](http://localhost:8000) to see the app in action
+At the root of the project directory, run:
+`yarn && yarn start`
 
-Run the Jest/Supertest suite with `yarn test`
+Then, navigate to [localhost:8000](http://localhost:8000) to see the application in action
+
+You can run the Jest/Supertest suite with `yarn test`
