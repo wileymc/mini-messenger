@@ -1,6 +1,5 @@
 const Koa = require('koa')
 const Router = require('koa-router')
-const bodyParser = require('koa-body-parser')
 const send = require('koa-send')
 const IO = require('koa-socket-2')
 
@@ -32,7 +31,7 @@ router.get(`/`, async (ctx, next) => {
 
 router.redirect('/:anything', '/')
 
-app.use(router.routes()).use(bodyParser)
+app.use(router.routes())
 
 const port = process.env.PORT || 8000
 app = app.listen(port)
